@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<svg id="svg" x="0" y="0" contentScriptType="text/ecmascript" width="1500.0px" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full"
+    zoomAndPan="magnify" contentStyleType="text/css" height="580.0px" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+    version="1.0">
+<g id="mydiv" transform="translate(0, 0)">
+    <image id="head" x="160.0" y="150.0" transform="matrix(1.0 0.0 0.0 1.0 12.0 6.3000007)" width="540" xlink:href="车头.png"
+        height="170" preserveAspectRatio="none"/>
+    <image x="330.466665" y="191.066664" transform="matrix(1.0 0.0 0.0 1.0 12.2 0.8)" width="50.0" xlink:href="车头门.png"
+        height="90" preserveAspectRatio="none"/>
+    <image x="700.0" y="160.0" transform="matrix(1.0 0.0 0.0 1.0 -8.400001 -0.39999992)" width="540" xlink:href="车中部.png"
+        height="160" preserveAspectRatio="none"/>
+    <image id="door" x="690.11111" y="185.000002" transform="matrix(1.0 0.0 0.0 1.0 12.2 0.8)" width="50" xlink:href="车中门1.png"
+        height="90" preserveAspectRatio="none"/>
+    <image x="1120.0" y="200.0" transform="matrix(1.0 0.0 0.0 1.0 35.088886 -16.311111)" width="50" xlink:href="车中门2.png"
+        height="90" preserveAspectRatio="none"/>
+   </g>
+</svg>
+<style>
+#mydiv { transform: scale(1); }
+
+</style>
+
+<script>
+function doorOpen() {
+    document.getElementById("door").setAttribute("x", "710");
+    document.getElementById("p").innerHTML = "Door Open!";
+	return 'Open door'
+}
+function doorClose() {
+    document.getElementById("door").setAttribute("x", "690");
+    document.getElementById("p").innerHTML = "Door Close!";
+	return 'Open close'
+}
+function trainMove3() {
+    
+    document.getElementById("p2").innerHTML = "Train Move!";
+	var m=setInterval(move,50);
+	
+	var x=0;
+		function move() {
+            var obj = document.getElementById('svg');//无法整体移动
+			var head = document.getElementById('head');
+			var headdoor = document.getElementById('headdoor');
+			var trainmiddle = document.getElementById('trainmiddle');
+			var door = document.getElementById('door');
+			var door2 = document.getElementById('door2');
+            x=x+10;
+	            head.setAttribute('transform','translate(-'+x+',0)');
+	            headdoor.setAttribute('transform','translate(-'+x+',0)');
+	            trainmiddle.setAttribute('transform','translate(-'+x+',0)');
+	            door.setAttribute('transform','translate(-'+x+',0)');
+	            door2.setAttribute('transform','translate(-'+x+',0)');
+            
+			
+			//document.getElementById("p2").innerHTML = head.getAttribute('x');
+			if (x>160){
+			   clearInterval(m);
+			}
+            
+        }
+	return 'trainMove';	
+}
+function trainMove2() {
+    
+    document.getElementById("p2").innerHTML = "Train Move!";
+	
+            var obj = document.getElementById('svg1');
+			var head = document.getElementById('head');
+            
+			obj.setAttribute('transform','translate(150,0)');
+		
+	return 'trainMove';	
+}
+function trainBrake() {
+    
+    document.getElementById("p2").innerHTML = "Train Brake!";
+}
+
+function trainMove() {
+    
+    document.getElementById("p2").innerHTML = "Train Move!";
+	var m=setInterval(move,50);
+	var x=0;
+		function move() {
+            var obj = document.getElementById('svg');
+			var head = document.getElementById('head');
+            x=x+10;
+            obj.setAttribute('transform','translate(-'+x+',0)');
+			
+			//document.getElementById("p2").innerHTML = head.getAttribute('x');
+			if (x>160){
+			   clearInterval(m);
+			}
+            
+        }
+	return 'trainMove';
+}
+</script>
+
+<p id="p">Door Close</p>
+<p id="p2">Train Brake</p>
+<button onclick="doorOpen()">Door Open</button>
+<button onclick="doorClose()">Door Close</button>
+<button onclick="trainMove()">Train Move</button>
+<button onclick="trainBrake()">Train Brake</button>
+</body>
+</html>
